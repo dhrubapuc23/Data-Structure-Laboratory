@@ -6,13 +6,15 @@ int Q[MAX],f = -1, r = -1;
 
 void printQueue()
 {
-    for(int i=f; i<=r; i++)
+    int i=f;
+    for(; i!=r; i = (i+1)%MAX)
         cout<<Q[i]<<" ";
+    cout<<Q[i];
     cout<<endl;
 }
 void Enqueue(int val)
 {
-    if(r == MAX - 1)
+    if((r+1)%MAX == f)
     {
         cout<<"Queue is full!"<<endl;
         exit(0);
@@ -24,7 +26,7 @@ void Enqueue(int val)
     }
     else
     {
-        r++;
+        r = (r+1)%MAX;
     }
     Q[r] = val;
 }
@@ -44,7 +46,7 @@ void Dequeue()
     else
     {
         val = Q[f];
-        f++;
+        f = (f+1)%MAX;
     }
     cout<<"Deleted element: "<<val<<endl;
 }
@@ -53,12 +55,15 @@ void Dequeue()
 int main()
 {
     Enqueue(5);
-    printQueue();
+   // printQueue();
     Enqueue(50);
-    printQueue();
+    //printQueue();
     Enqueue(55);
     printQueue();
     Dequeue();
     printQueue();
+    Enqueue(75);
+    printQueue();
+
 
 }
